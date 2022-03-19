@@ -14,7 +14,7 @@ amadeus = Client(
 def select_destination(req, param):
     if req.method == "GET":
         try:
-            print(param)
+           
             response = amadeus.reference_data.locations.get(
                 keyword=param, subType=Location.ANY)
             context = {
@@ -30,12 +30,12 @@ def select_destination(req, param):
 def search_offers(req):
     if req.method == "GET":
         try:
-            originCode = req.GET["originCode"]
-            destinationCode = req.GET["destinationCode"]
-            departureDate = req.GET["departureDate"]
-            print(originCode, destinationCode, departureDate)
+            origin_code = req.GET["originCode"]
+            destination_code = req.GET["destinationCode"]
+            departure_date = req.GET["departureDate"]
+            print(origin_code, destination_code, departure_date)
             response = amadeus.shopping.flight_offers_search.get(
-                originLocationCode=originCode, destinationLocationCode=destinationCode, departureDate=departureDate, adults=1)
+                originLocationCode=origin_code, destinationLocationCode=destination_code, departureDate=departure_date, adults=1)
             context = {
                 "data": response.data
             }
